@@ -15,7 +15,7 @@ function App() {
 
   function markTodoAsComplete(text) {
     setIncompleteTodos(incompleteToDos.filter(t => t.text !== text));
-    setCompletedTodos([...completedToDos, incompleteToDos.find(t => t.text === text)]);
+    setCompletedTodos([...completedToDos, { ...incompleteToDos.find(t => t.text === text), isCompleted: true }]);
   }
 
   function deleteTodo(text) {

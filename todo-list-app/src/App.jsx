@@ -1,15 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import TodoList from './ToDo'
+import TodoList from './TodoList';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [completedToDos, setCompletedTodos] = useState([
+    { text: 'Take out the garbage', isCompleted: true},
+    { text: 'Make dinner', isCompleted: true}
+  ]);
+  const [incompleteToDos, setIncompleteTodos] = useState([
+    { text: 'Paint the house', isCompleted: false },
+    { text: 'Practice coding', isCompleted: false }
+  ]);
+
+  function markTodoAsComplete(text) {
+    setIncompleteTodos(incompleteToDos.filter(t => t.text !== text));
+    setCompletedTodos([...completedToDos, incompleteToDos.find(t => t.text === text)]);
+  }
+
+  function deleteTodo(text) {
+    setCompletedTodos(completedToDos.filter(t => t.text !== text));
+  }
+
+  function createTodo(text) {
+    setIncompleteTodos([...incompleteToDos, { text, isCompleted: false }]);
+  }
 
   return (
     <>
-      <TodoList completedTodos={[]} incompleteTodos={[]}/>
+      <TodoList 
+        completedTodos={completedToDos} 
+        incompleteTodos={incompleteToDos}
+        onCompletedClicked={markTodoAsComplete}
+        onDeleteClicked={deleteTodo}
+        onCreateClicked={createTodo}
+      />
     </>
   )
 }

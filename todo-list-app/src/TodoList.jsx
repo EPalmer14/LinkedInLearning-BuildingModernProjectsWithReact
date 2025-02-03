@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./ToDoListItem";
 
-export default function TodoList({ completedTodos, incompleteTodos, onCompletedClicked, onDeleteClicked, onCreateClicked }) {
+export default function TodoList({ onCompletedClicked, onDeleteClicked, onCreateClicked }) {
+  const todos = useSelector(state => state.todos.value);
+  
+  
   return (
     <div>
       <h1>My Todos</h1>

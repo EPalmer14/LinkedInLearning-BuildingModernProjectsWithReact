@@ -3,7 +3,14 @@ import { createSlice } from '@reduxjs/toolkit'
 export const todosSlice = createSlice({
   name: 'todos',
   initialState: {
-    value: [],
+    value: [{
+      text: 'Go to the store',
+      isCompleted: true,
+    }, 
+    {
+      text: 'New Todo',
+      isCompleted: false,
+    }],
   },
   reducers: {
     createTodo: state => {
@@ -22,4 +29,6 @@ export const todosSlice = createSlice({
       state.value = state.value.filter(t => t.text !== text);
     },
   }
-})
+});
+
+export const { createTodo, markTodoAsCompleted, deleteTodo } = todosSlice.actions;

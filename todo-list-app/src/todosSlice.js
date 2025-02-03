@@ -19,13 +19,13 @@ export const todosSlice = createSlice({
         isCompleted: false,
       }];
     },
-    markTodoAsCompleted: state => {
-      const text = 'New Todo';
+    markTodoAsCompleted: (state, action) => {
+      const text = action.payload;
       const todo = state.value.find(t => t.text === text);
       todo.isCompleted = true;
     },
-    deleteTodo: state => {
-      const text = 'New Todo';
+    deleteTodo: (state, action) => {
+      const text = action.payload;
       state.value = state.value.filter(t => t.text !== text);
     },
   }

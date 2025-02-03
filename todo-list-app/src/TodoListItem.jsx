@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { markTodoAsCompleted, deletTodo } from "./todosSlice";
 
-export default function TodoListItem({ todo, onCompletedClicked, onDeleteClicked}) {
+export default function TodoListItem({ todo }) {
   const dispatch = useDispatch();
   return (
     <div>

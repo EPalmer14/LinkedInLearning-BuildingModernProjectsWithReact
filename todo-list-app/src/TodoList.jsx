@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
+import { observer } from 'mobx-react-lite'
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./ToDoListItem";
 import { useRecoilState } from "recoil";
 import { todos as todosAtom } from './atoms'
+import todosStore from "./todos-mobx";
 
 export default function TodoList() {
   // const todos = useSelector(state => state.todos.value);

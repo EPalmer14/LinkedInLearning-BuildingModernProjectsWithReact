@@ -12,7 +12,7 @@ export default function NewTodoForm() {
       value={inputText}
       onChange={e => setInputText(e.target.value)}/>
       <button onClick={() => {
-        onCreateClicked(inputText);
+        dispatch(createTodo(inputText));
         setInputText('');
       }}>Create Todo</button>
     </div>

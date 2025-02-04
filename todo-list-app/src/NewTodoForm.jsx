@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createTodo } from "./todosSlice";
 
-export default function NewTodoForm({ onCreateClicked }) {
+export default function NewTodoForm() {
   const [inputText, setInputText] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <div>

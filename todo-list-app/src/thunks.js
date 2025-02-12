@@ -7,7 +7,13 @@ import {
 
 export const loadTodos = () => async (dispatch) => {
   dispatch(loadingStarted());
-  const response = await axios.get('/api/todos');
-  const todos = response.data;
-  dispatch(loadingCompleted(todos));
+  try{
+    const response = await axios.get('/api/todos');
+    const todos = response.data;
+    console.log(todos);
+    dispatch(loadingCompleted(todos));
+  }
+  catch (e){
+    loadingFailed(e);
+  }
 }

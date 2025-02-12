@@ -7,7 +7,7 @@ import { todos as todosAtom } from './atoms'
 import todosStore from "./todos-mobx";
 
 export default function TodoList() {
-  // const todos = useSelector(state => state.todos.value);
+  //const todos = useSelector(state => state.todos.value);
   const [todos, setTodos] = useRecoilState(todosAtom);
 
   

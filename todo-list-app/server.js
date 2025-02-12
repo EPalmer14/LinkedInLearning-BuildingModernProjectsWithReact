@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 
 let todos = [{
+  id: '123',
   text: 'Add a server',
   isCompleted: true,
 }];

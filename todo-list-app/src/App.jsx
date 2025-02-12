@@ -1,12 +1,16 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadTodos } from './thunks';
 import './App.css'
 import TodoList from './TodoList';
 
 
 function App() {
-
-  function createTodo(text) {
-    setIncompleteTodos([...incompleteToDos, { text, isCompleted: false }]);
-  }
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(loadTodos());
+  }, []);
 
   return (
     <>

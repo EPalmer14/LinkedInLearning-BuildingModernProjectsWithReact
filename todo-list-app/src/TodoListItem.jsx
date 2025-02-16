@@ -4,6 +4,7 @@ import { deleteTodo } from "./thunks";
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
+  ${props => props.important && 'background-color: yellow;'}
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   padding: 16px;
@@ -12,7 +13,7 @@ const CardContainer = styled.div`
 export default function TodoListItem({ todo }) {
   const dispatch = useDispatch();
   return (
-    <CardContainer>
+    <CardContainer important>
       <h3>{todo.text}</h3>
       {todo.isCompleted && <p>Complete!</p>}
       {todo.isCompleted

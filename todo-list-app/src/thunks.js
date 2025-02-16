@@ -4,6 +4,9 @@ import {
   loadingCompleted,
   loadingFailed,
 } from './loadingSlice';
+import {
+  todosUpdated,
+} from './todosSlice';
 
 export const loadTodos = () => async (dispatch) => {
   dispatch(loadingStarted());
@@ -15,5 +18,29 @@ export const loadTodos = () => async (dispatch) => {
   }
   catch (e){
     loadingFailed(e);
+  }
+}
+
+export const createTodo = (newTodoText) => async (dispatch, getState) => {
+  try {
+    const response = await axios.post('/api/todos', { text: newTodoText });
+    const newTodo = response.data;
+    const updatedTodos = getState().todos.value.concat(newTodo);
+    dispatch(todosUpdated(updatedTodos));
+  }
+  catch (e) {
+    console.log(e);
+  }
+}
+
+export const deleteTodo = (todoId) => async (dispatch, getState) => {
+  try {
+    const response = await axios.delete('/api/todos' + todoId);
+    const newTodo = response.data;
+    const updatedTodos = getState().todos.value.concat(newTodo);
+    dispatch(todosUpdated(updatedTodos));
+  }
+  catch (e) {
+    console.log(e);
   }
 }

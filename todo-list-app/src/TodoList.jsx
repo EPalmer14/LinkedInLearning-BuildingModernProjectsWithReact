@@ -20,12 +20,12 @@ export default function TodoList() {
         : (
             <>
             <h3>Completed:</h3>
-            {todos.map((todo, index) => (
-              <TodoListItem todo={todo} key={index} />
+            {todos.map((todo) => (
+              <TodoListItem todo={todo} key={todo.id} />
             ))}
             <h3>Incomplete:</h3>
-            {todos.map((todo, index) => (
-              <TodoListItem todo={todo} key={index} />
+            {todos.map((todo) => (
+              <TodoListItem todo={todo} key={todo.id} />
             ))}
             </>
         )}

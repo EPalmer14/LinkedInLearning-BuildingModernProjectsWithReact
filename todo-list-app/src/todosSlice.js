@@ -1,16 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+import { loadingCompleted } from './loadingSlice';
+import { build } from 'vite';
 
 export const todosSlice = createSlice({
   name: 'todos',
   initialState: {
-    value: [{
-      text: 'Go to the store',
-      isCompleted: true,
-    }, 
-    {
-      text: 'New Todo',
-      isCompleted: false,
-    }],
+    value: [],
   },
   reducers: {
     createTodo: (state, action) => {
@@ -28,6 +23,11 @@ export const todosSlice = createSlice({
       const text = action.payload;
       state.value = state.value.filter(t => t.text !== text);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loadingCompleted, (state, action) => {
+      state.value = action.payload;
+    })
   }
 });
 

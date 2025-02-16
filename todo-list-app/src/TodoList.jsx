@@ -5,11 +5,12 @@ import TodoListItem from "./ToDoListItem";
 import { useRecoilState } from "recoil";
 import { todos as todosAtom } from './atoms'
 import todosStore from "./todos-mobx";
-import { getTodos, getTodosLoading } from './selectors';
+import { getCompletedTodos, getIncompleteTodos, getTodos, getTodosLoading } from './selectors';
 
 export default function TodoList() {
   const todosAreLoading = useSelector(getTodosLoading);
-  const todos = useSelector(getTodos);
+  const completedTodos = useSelector(getCompletedTodos);
+  const incompleteTodos = useSelector(getIncompleteTodos);
   //const [todos, setTodos] = useRecoilState(todosAtom);
   
   return (
@@ -21,11 +22,11 @@ export default function TodoList() {
         : (
             <>
             <h3>Completed:</h3>
-            {todos.map((todo) => (
+            {completedTodos.map((todo) => (
               <TodoListItem todo={todo} key={todo.id} />
             ))}
             <h3>Incomplete:</h3>
-            {todos.map((todo) => (
+            {incompleteTodos.map((todo) => (
               <TodoListItem todo={todo} key={todo.id} />
             ))}
             </>

@@ -10,6 +10,7 @@ import App from './App.jsx'
 const store = configureStore({
   reducer: {
     todos: todosSlice.reducer,
+    loading: loadingSlice.reducer,
   },
 });
 

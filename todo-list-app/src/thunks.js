@@ -35,8 +35,19 @@ export const createTodo = (newTodoText) => async (dispatch, getState) => {
 
 export const deleteTodo = (todoId) => async (dispatch, getState) => {
   try {
-    const response = await axios.delete('/api/todos' + todoId);
+    await axios.delete('/api/todos' + todoId);
     const updatedTodos = getState().todos.value.filter(t => t.id !== todoId );
+    dispatch(todosUpdated(updatedTodos));
+  }
+  catch (e) {
+    console.log(e);
+  }
+}
+
+export const markTodoAsCompleted = (todoId) => async (dispatch, getState) => {
+  try {
+    const response = await axios.put('/api/todos' + todoId, { isCompleted: true });
+    const updatedTodos = getState().todos.value.map(t => t.id === todoId ? updatedTodo : t);
     dispatch(todosUpdated(updatedTodos));
   }
   catch (e) {
